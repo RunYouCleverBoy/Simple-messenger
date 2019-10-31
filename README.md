@@ -2,4 +2,4 @@
 A simple messenger - for a POC
 
 Architecture
-![alt](documentation/images/architecture.svg)
+![alt](doc/images/architecture.svg)
