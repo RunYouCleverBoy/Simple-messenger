@@ -1,10 +1,25 @@
-plugins {
-    id 'groovy'
-    id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.3.41'
+buildscript {
+    ext.kotlin_version = '1.3.61'
+    ext.ktor_version = '1.2.6'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
 
-group 'SimpleServer'
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'application'
+
+//plugins {
+//    id 'java'
+//    id 'org.jetbrains.kotlin.jvm' version '1.3.61'
+//}
+
+group 'SImpleChatServer'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
@@ -13,15 +28,31 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.3.11'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
+//dependencies {
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+//}
+//
+mainClassName = 'MainKt'
 
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "io.ktor:ktor-server-netty:$ktor_version"
+    compile("ch.qos.logback:logback-classic:1.2.3")
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
