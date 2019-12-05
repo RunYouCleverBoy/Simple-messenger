@@ -1,8 +1,11 @@
 <div style="height: 200px; overflow: auto">
   <div *ngFor="let item of items; let i = index">
-    {{i}}. {{item.date.getHours()}}:{{item.date.getMinutes()}}:{{item.date.getSeconds()}} {{item.message}}
+    {{i}}. {{item.tsAsString}} {{item.text}}
   </div>
 </div>
 <input type="text" [(ngModel)]='messageText'><button (click)="onSend()">Send</button>
+<div>
+  <button (click)="refresh()">Refresh</button>
+</div>
 
 
