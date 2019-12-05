@@ -1,1 +1,8 @@
-<p>chat-window works!</p>
+<div style="height: 200px; overflow: auto">
+  <div *ngFor="let item of items; let i = index">
+    {{i}}. {{item.date.getHours()}}:{{item.date.getMinutes()}}:{{item.date.getSeconds()}} {{item.message}}
+  </div>
+</div>
+<input type="text" [(ngModel)]='messageText'><button (click)="onSend()">Send</button>
+
+
