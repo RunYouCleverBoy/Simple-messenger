@@ -15,7 +15,7 @@ class ChatWindowFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.chat_window_layout, container, false)
         view.chatList.adapter = ChatListAdapter()
-        chatListViewModel = ViewModelProvider(this, ChatListViewModel.Factory(this)).get(ChatListViewModel::class.java)
+        chatListViewModel = ViewModelProvider(this, ChatListViewModel.Factory(requireContext())).get(ChatListViewModel::class.java)
         view.sendButton.onClickSuspend { chatListViewModel.send(view.newMessageLine.text.toString()); view.newMessageLine.setText("") }
         view.refreshButton.onClickSuspend { chatListViewModel.reload() }
         return view

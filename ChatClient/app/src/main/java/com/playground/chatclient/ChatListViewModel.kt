@@ -1,6 +1,7 @@
 package com.playground.chatclient
 
 import TextMessage
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
@@ -12,15 +13,15 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.Request
 
 
-class ChatListViewModel : ViewModel() {
-    val provider = ChatListProvider()
+class ChatListViewModel(context: Context) : ViewModel() {
+    private val provider = ChatListProvider(context)
 
     suspend fun send(message: String) = provider.send(message)
     suspend fun reload() = provider.reload()
 
-    class Factory(private val fragment: ChatWindowFragment) : ViewModelProvider.Factory {
+    class Factory(private val context: Context) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return modelClass.getConstructor(ChatWindowFragment::class.java).newInstance(fragment)
+            return modelClass.getConstructor(Context::class.java).newInstance(context)
         }
 
     }
