@@ -57,6 +57,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation "io.grpc:grpc-protobuf:${grpcVersion}"
     implementation "io.grpc:grpc-stub:${grpcVersion}"
+    implementation "org.litote.kmongo:kmongo-coroutine:3.11.2"
     compileOnly "javax.annotation:javax.annotation-api:1.2"
     runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
 

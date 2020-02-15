@@ -1,16 +1,9 @@
 package com.playground.chatclient
 
-import TextMessage
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.Gson
 import com.playground.chatclient.model.ChatListProvider
-import com.snap.android.apis.utils.coroutines.Cor
-import okhttp3.OkHttpClient
-import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.Request
 
 
 class ChatListViewModel(context: Context) : ViewModel() {
@@ -23,7 +16,6 @@ class ChatListViewModel(context: Context) : ViewModel() {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return modelClass.getConstructor(Context::class.java).newInstance(context)
         }
-
     }
 
     override fun onCleared() {

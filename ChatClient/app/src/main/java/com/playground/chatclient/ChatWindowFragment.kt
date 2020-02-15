@@ -21,7 +21,7 @@ class ChatWindowFragment: Fragment() {
         return view
     }
 
-    fun View.onClickSuspend(f : suspend (View) -> Unit) {
+    private fun View.onClickSuspend(f : suspend (View) -> Unit) {
         setOnClickListener { launchUI{f.invoke(it)} }
     }
 }

@@ -1,7 +1,22 @@
 import com.google.gson.annotations.SerializedName
 
-open class ReceivedMessage(@SerializedName("kind") val kind: String, @SerializedName("ts") var timeStamp:Long = System.currentTimeMillis())
-open class TextMessage(@SerializedName("text") val text: String) : ReceivedMessage(kind = "text")
-open class ImageMessage(@SerializedName("imageUri" ) val uri: String, @SerializedName("Title") val title:String) : ReceivedMessage(kind = "image")
+sealed class ReceivedMessage {
+    open class TextMessage(
+        @SerializedName("text") val text: String,
+        @SerializedName("kind") val kind: String = "text",
+        @SerializedName("ts") var timeStamp: Long = System.currentTimeMillis()
+    ) : ReceivedMessage()
 
-class UnknownMessage(val errorKind:String): ReceivedMessage(kind = "ERROR")
+    open class ImageMessage(
+        @SerializedName("imageUri") val uri: String,
+        @SerializedName("title") val title: String,
+        @SerializedName("kind") val kind: String = "image",
+        @SerializedName("ts") var timeStamp: Long = System.currentTimeMillis()
+    ) : ReceivedMessage()
+
+    class UnknownMessage(
+        @SerializedName("errorKind") val errorKind: String,
+        @SerializedName("kind") val kind: String = "error",
+        @SerializedName("ts") var timeStamp: Long = System.currentTimeMillis()
+    ) : ReceivedMessage()
+}
